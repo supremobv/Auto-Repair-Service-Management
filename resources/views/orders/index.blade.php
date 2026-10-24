@@ -1,0 +1,5 @@
+@extends('layouts.app')
+@section('title','Work orders')
+@section('content')
+<div class="page-heading"><div><div class="eyebrow">FROM ESTIMATE TO HANDOVER</div><h1>Work orders</h1><p>Keep every repair moving, with a clear view of the next step.</p></div>@if(\App\Support\Access::allows(auth()->user(),'orders'))<a class="btn primary" href="/orders/create">＋ New work order</a>@endif</div><section class="panel"><form class="toolbar"><input name="q" value="{{ request('q') }}" placeholder="Search job, customer or plate…" aria-label="Search work orders"><select name="status" aria-label="Filter status"><option value="">All statuses</option>@foreach(['estimate','approved','in_progress','completed','invoiced','cancelled'] as $s)<option value="{{ $s }}" @selected(request('status')===$s)>{{ ucwords(str_replace('_',' ',$s)) }}</option>@endforeach</select><button class="btn">Search</button><a class="subtle-link" href="/orders">Reset</a><span class="spacer"></span><span class="muted">{{ $orders->total() }} orders</span></form>@include('partials.orders-table'){{ $orders->links() }}</section>
+@endsection

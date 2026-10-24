@@ -1,0 +1,1 @@
+<div class="print-only print-brand"><img src="{{ !empty($shop->logo)?asset('storage/'.$shop->logo):'/logo.svg' }}" alt="Business logo" width="50" height="50"><div><h2>{{ $shop->name }}</h2><p>{{ $shop->address }} · {{ $shop->phone }} · {{ $shop->email }}</p></div></div>
